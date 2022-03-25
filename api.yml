@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: CargoEnvMon
+  description: Api description
+  version: 0.0.1
+paths:
+  /api/cargo:
+    post:
+      summary: Adds cargo
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              properties:
+                shipmentId:
+                  type: string
+                cargoId:
+                  type: string
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      temperature:
+                        type: number
+                        description: Degrees Celsius
+                      humidity:
+                        type: number
+                        description: '??'
+                      timestamp:
+                        type: integer
+                        description: timestamp in ISO 8601
+              required:
+                - shipmentId
+                - items
+            example:
+              shipmentId: msk-spb-3
+              cargoId: lmt-34
+              items: 
+                - temperature: 20.3
+                  humidity:
+                  timestamp: 1648414056386
+                - temperature: 20.4
+                  humidity:
+                  timestamp: 1648414064482
+
+      responses:
+        '200':    
+          description: Cargo added
+        '400':
+          description: Error with request
+          content: 
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+              examples:
+                NoShipment:
+                  summary: No such shipment 
+                  value:
+                    message: 'Shipment msk-spb-3 does not exist'
+                NoCargo:
+                  summary: No such cargo 
+                  value:
+                    message: 'Cargo lmt-34 does not exist'
+
+            
