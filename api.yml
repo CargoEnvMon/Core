@@ -17,6 +17,12 @@ paths:
                   type: string
                 cargoId:
                   type: string
+                startTimestamp:
+                  type: number
+                  description: Measurements start
+                timeShiftUnits:
+                  type: number
+                  description: Units for time shift in items
                 items:
                   type: array
                   items:
@@ -28,22 +34,26 @@ paths:
                       humidity:
                         type: number
                         description: '??'
-                      timestamp:
+                      timeShift:
                         type: integer
-                        description: utc timestamp 
+                        description: Time shift from previous measurement
               required:
                 - shipmentId
                 - items
+                - startTimestamp
+                - timeShiftUnits
             example:
               shipmentId: msk-spb-3
               cargoId: lmt-34
+              startTs: 1648414056386
+              timeShiftUnits: 3
               items: 
                 - temperature: 20.3
                   humidity:
-                  timestamp: 1648414056386
+                  timeShift: 386
                 - temperature: 20.4
                   humidity:
-                  timestamp: 1648414064482
+                  timeShift: 482
 
       responses:
         '200':    
