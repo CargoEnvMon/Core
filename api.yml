@@ -30,7 +30,7 @@ paths:
                         description: '??'
                       timestamp:
                         type: integer
-                        description: timestamp in ISO 8601
+                        description: utc timestamp 
               required:
                 - shipmentId
                 - items
