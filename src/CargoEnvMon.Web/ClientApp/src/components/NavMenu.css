@@ -16,3 +16,15 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 0 5px;
+  gap: 15px;
+  width: 300px;
+}
+
+.saved {
+  font-style: italic;
+}

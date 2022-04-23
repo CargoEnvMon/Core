@@ -13,4 +13,14 @@ export class ServiceApi {
     return fetch(`/api/mon/cargo/${cargoId}`)
       .then(e => e.json());
   }
+
+  static saveShipment(title, code) {
+    return fetch('/api/save/shipment', {
+      method: 'POST',
+      headers: {
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify({title, code})
+    });
+  }
 }

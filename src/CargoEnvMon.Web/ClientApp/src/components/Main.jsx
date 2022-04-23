@@ -1,4 +1,4 @@
-import React, {Component, useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import {ServiceApi} from "../ServiceApi";
 import {AppContext} from "../AppContext";

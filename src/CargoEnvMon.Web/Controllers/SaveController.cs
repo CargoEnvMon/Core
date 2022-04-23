@@ -1,4 +1,5 @@
 using CargoEnvMon.Shared;
+using CargoEnvMon.Web.Models.Dto;
 using CargoEnvMon.Web.Models.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace CargoEnvMon.Web.Controllers;
 public class SaveController : Controller
 {
     private readonly SaveCargoRequestHandler saveCargoRequestHandler;
+    private readonly SaveShipmentRequestHandler saveShipmentRequestHandler;
 
-    public SaveController(SaveCargoRequestHandler saveCargoRequestHandler)
+    public SaveController(SaveCargoRequestHandler saveCargoRequestHandler, SaveShipmentRequestHandler saveShipmentRequestHandler)
     {
         this.saveCargoRequestHandler = saveCargoRequestHandler;
+        this.saveShipmentRequestHandler = saveShipmentRequestHandler;
     }
 
     [Route("cargo")]
@@ -26,6 +29,11 @@ public class SaveController : Controller
 
         return Ok();
     }
-    
-    
+
+    [Route("shipment")]
+    public ActionResult SaveShipment([FromBody] ShipmentSaveRequest request)
+    {
+        saveShipmentRequestHandler.Handle(request);
+        return Ok();
+    }
 }
