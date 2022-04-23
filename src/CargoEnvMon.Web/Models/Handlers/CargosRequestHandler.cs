@@ -12,11 +12,13 @@ public class CargosRequestHandler
         this.dbContext = dbContext;
     }
 
-    public CargosResponse Handle()
+    public CargosResponse Handle(int shipmentId)
     {
         return new CargosResponse
         {
-            Items = dbContext.Cargos.Select(e => new CargoItemAppModel
+            Items = dbContext.Cargos
+                .Where(e => e.ShipmentId == shipmentId)
+                .Select(e => new CargoItemAppModel
             {
                 Code = e.Code,
                 Title = e.Title,

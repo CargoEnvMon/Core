@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CargoEnvMon.Web.Controllers;
 
 [ApiController]
-[Route("/api/mon")]
+[Route("api/mon")]
 public class MonController : Controller
 {
     private readonly ShipmentsRequestHandler shipmentsRequestHandler;
@@ -21,12 +21,12 @@ public class MonController : Controller
         this.cargoRequestHandler = cargoRequestHandler;
     }
 
-    [Route("shipments")]
+    [HttpGet, Route("shipments")]
     public ShipmentsResponse GetShipments() => shipmentsRequestHandler.Handle();
 
-    [Route("cargos")]
-    public CargosResponse GetCargos() => cargosRequestHandler.Handle();
+    [HttpGet, Route("shipment/{id:int}/cargos")]
+    public CargosResponse GetCargos(int id) => cargosRequestHandler.Handle(id);
 
-    [Route("cargo/{id:int}")]
+    [HttpGet, Route("cargo/{id:int}")]
     public CargoAppModel GetCargo(int id) => cargoRequestHandler.Handle(id);
 }
