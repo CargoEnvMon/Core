@@ -1,50 +1,36 @@
-import React, {Component} from 'react';
+import React, {Component, useContext, useEffect, useState} from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import {ServiceApi} from "../ServiceApi";
+import {AppContext} from "../AppContext";
 
-export class Main extends Component {
-  static displayName = Main.name;
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      shipments: [],
-      cargos: [],
-      selectedShipment: null,
-    }
-  }
-
-  componentDidMount() {
+export function Main() {
+  const [shipments, setShipments] = useState([]);
+  const [selectedShipment, setSelectedShipment] = useState(null);
+  
+  const {reloadShipments} = useContext(AppContext);
+  
+  useEffect(() => {
     ServiceApi.getShipments()
       .then(data => {
-        const shipments = data.items.map(({shipmentId, title, code}) => ({label: `${title} (#${code})`, shipmentId}));
-        this.setState({shipments});
+        const items = data.items.map(({shipmentId, title, code}) => ({label: `${title} (#${code})`, shipmentId}));
+        setShipments(items);
       });
-  }
+  }, [reloadShipments]);
 
-  render() {
-    const {shipments, selectedShipment} = this.state;
-
-    return (
-      <div className="main">
-        <h1 className="title">Cargo check</h1>
-        <div className="selects-wrapper">
-          <Autocomplete
-            disablePortal
-            options={shipments}
-            value={selectedShipment}
-            onChange={(e, val) => this.setState({selectedShipment: val})}
-            sx={{width: 300}}
-            renderInput={(params) => <TextField {...params} label="Select shipment"/>}
-          />
-        </div>
+  return (
+    <div className="main">
+      <h1 className="title">Cargo check</h1>
+      <div className="selects-wrapper">
+        <Autocomplete
+          disablePortal
+          options={shipments}
+          value={selectedShipment}
+          onChange={(e, val) => setSelectedShipment(val)}
+          sx={{width: 300}}
+          renderInput={(params) => <TextField {...params} label="Select shipment"/>}
+        />
       </div>
-    );
-  }
-}
-
-function getShipments() {
-
+    </div>
+  );
 }
 
