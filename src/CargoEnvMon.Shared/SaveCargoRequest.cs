@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace CargoEnvMon.Reader.Models.Client
+namespace CargoEnvMon.Shared
 {
     public class SaveCargoRequest
     {

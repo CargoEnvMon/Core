@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CargoEnvMon.Reader.Infrastructure;
 using CargoEnvMon.Reader.Models.Client;
+using CargoEnvMon.Shared;
 
 namespace CargoEnvMon.Reader.Models
 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CargoEnvMon.Reader.Models;
 using CargoEnvMon.Reader.Models.Client;
+using CargoEnvMon.Shared;
 using FluentAssertions;
 using NUnit.Framework;
 

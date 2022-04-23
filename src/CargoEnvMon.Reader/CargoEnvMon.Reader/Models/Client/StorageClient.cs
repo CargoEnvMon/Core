@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CargoEnvMon.Reader.Infrastructure;
+using CargoEnvMon.Shared;
 using Newtonsoft.Json;
 
 namespace CargoEnvMon.Reader.Models.Client

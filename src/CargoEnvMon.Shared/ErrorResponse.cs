@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace CargoEnvMon.Reader.Models.Client
+namespace CargoEnvMon.Shared
 {
     public class ErrorResponse
     {
