@@ -10,14 +10,15 @@ public class MonController : Controller
 {
     private readonly ShipmentsRequestHandler shipmentsRequestHandler;
     private readonly CargosRequestHandler cargosRequestHandler;
+    private readonly CargoRequestHandler cargoRequestHandler;
 
     public MonController(
         ShipmentsRequestHandler shipmentsRequestHandler,
-        CargosRequestHandler cargosRequestHandler
-    )
+        CargosRequestHandler cargosRequestHandler, CargoRequestHandler cargoRequestHandler)
     {
         this.shipmentsRequestHandler = shipmentsRequestHandler;
         this.cargosRequestHandler = cargosRequestHandler;
+        this.cargoRequestHandler = cargoRequestHandler;
     }
 
     [Route("shipments")]
@@ -25,4 +26,7 @@ public class MonController : Controller
 
     [Route("cargos")]
     public CargosResponse GetCargos() => cargosRequestHandler.Handle();
+
+    [Route("cargo/{id:int}")]
+    public CargoAppModel GetCargo(int id) => cargoRequestHandler.Handle(id);
 }
