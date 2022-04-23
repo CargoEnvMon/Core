@@ -1,7 +1,9 @@
+using CargoEnvMon.Web.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CargoEnvMon.Web.DataLayer;
 
+[PreventAutoRegistration]
 public class CargoEnvMonDbContext : DbContext
 {
     private readonly IConfiguration configuration;

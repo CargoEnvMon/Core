@@ -1,3 +1,4 @@
+using CargoEnvMon.Web.DataLayer;
 using CargoEnvMon.Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.UseAutoDependencies(typeof(Program).Assembly);
+builder.Services.AddDbContext<CargoEnvMonDbContext>();
 
 var app = builder.Build();
 
