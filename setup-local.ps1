@@ -1,0 +1,1 @@
+docker run -d --name cargoenvmon-pg -e POSTGRES_PASSWORD=123456 -v D:\db\pg\cargoenvmon:/var/lib/postgresql/data -p 5432:5432 postgres:14
