@@ -20,3 +20,29 @@ code {
   flex-direction: column;
   gap: 20px;
 }
+
+.selects-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.cargo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.cargo-content {
+  margin-top: 10px;
+  display: flex;
+  gap: 30px;
+}
+
+.cargo-chart {
+  flex: 1;
+}

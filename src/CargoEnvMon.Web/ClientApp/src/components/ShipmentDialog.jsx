@@ -15,7 +15,6 @@ export function ShipmentDialog({open, onClose}) {
       .saveShipment(title, code)
       .then(() => setShowSaved(true))
       .then(() => triggerReload());
-    
   };
 
   return <Dialog open={open} onClose={onClose}>

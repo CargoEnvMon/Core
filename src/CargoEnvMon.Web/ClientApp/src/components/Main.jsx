@@ -2,10 +2,13 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import {ServiceApi} from "../ServiceApi";
 import {AppContext} from "../AppContext";
+import {Cargo} from "./Cargo";
 
 export function Main() {
   const [shipments, setShipments] = useState([]);
+  const [cargos, setCargos] = useState([]);
   const [selectedShipment, setSelectedShipment] = useState(null);
+  const [selectedCargo, setSelectedCargo] = useState(null);
   
   const {reloadShipments} = useContext(AppContext);
   
@@ -16,6 +19,22 @@ export function Main() {
         setShipments(items);
       });
   }, [reloadShipments]);
+  
+  const onShipmentSelect = (e, val) => {
+    setSelectedShipment(val);
+    if (val) {
+      ServiceApi.getCargos(val.shipmentId)
+        .then(data => {
+          const items = data.items.map(({cargoId, title, code}) => ({label: `${title} (#${code})`, cargoId}));
+          setCargos(items);
+        })
+    }
+    setSelectedCargo(null);
+  };
+  
+  const onCargoSelect = (e, val) => {
+    setSelectedCargo(val);
+  }
 
   return (
     <div className="main">
@@ -25,10 +44,19 @@ export function Main() {
           disablePortal
           options={shipments}
           value={selectedShipment}
-          onChange={(e, val) => setSelectedShipment(val)}
+          onChange={onShipmentSelect}
           sx={{width: 300}}
-          renderInput={(params) => <TextField {...params} label="Select shipment"/>}
+          renderInput={(params) => <TextField {...params} label="Shipment"/>}
         />
+        {selectedShipment && <Autocomplete
+          disablePortal
+          options={cargos}
+          value={selectedCargo}
+          onChange={onCargoSelect}
+          sx={{width: 300}}
+          renderInput={(params) => <TextField {...params} label="Cargo"/>}
+        />}
+        {selectedCargo && <Cargo {...selectedCargo}/>}
       </div>
     </div>
   );

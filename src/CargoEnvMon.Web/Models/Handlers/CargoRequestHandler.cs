@@ -31,8 +31,7 @@ public class CargoRequestHandler
         return new MeasurementAppModel
         {
             Temperature = measurement.Temperature,
-            Date = measurement.Created.ToShortDateString(),
-            Time = measurement.Created.ToShortTimeString()
+            Created = measurement.Created.ToString("g"),
         };
     }
 }
